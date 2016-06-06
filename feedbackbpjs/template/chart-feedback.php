@@ -1,11 +1,11 @@
 <?php
-/*
-=====================================================
+/* penjelasan [1]
+======================================================
 | mengambil data berdasarkan tanggal saat ini
-=====================================================
+======================================================
 */
 $tanggalSekarang = date("Y-m-d");
-$dataChart = mysql_query("SELECT * FROM bpjs_feedback WHERE `tanggal` = '$tanggalSekarang'");
+$dataChart = mysql_query("SELECT * FROM bpjs_feedback");
 $chartArray = array();
 while($FetchDataChart = mysql_fetch_assoc($dataChart)){
     $chartArray[] = array(
@@ -14,30 +14,75 @@ while($FetchDataChart = mysql_fetch_assoc($dataChart)){
     );
 }
 
-/*
+/* penjelasan [2]
 ======================================================
 | menentukan jumlah loket
 ======================================================
+| cara menghitung jumlah loket adalah dengan menemukan
+| bilangan terbesar dari jenis loketnya
 */
 $jmlLoket = 0;
+
+/*
+| melakukan perulangan sebanyak jumlah baris di tabel
+| feedback kemudian menyisir seluruh loket untuk
+| mendapatkan nilai terbesarnya
+*/
 for($a = 0; $a < count($chartArray); $a++){
     if($jmlLoket < $chartArray[$a]['loket']){
         $jmlLoket = $chartArray[$a]['loket'];
     }
 }
 
+/* penjelasan [3]
+======================================================
+| inisiasi array untuk menampung data jenis loket
+| dan jumlah kepuasan dan ketidakpuasannya
+| contoh :
+------------------------------------------------------
+| [a, 4, 2]
+| ini berarti loket ke 'a' memiliki data kepuasan : 4
+| dan ketidakpuasan : 2
+======================================================
+*/
 $jalur = array();
 
-// 1, 3, 2
-
+/* penjelasan [4]
+======================================================
+| mengisi nilai array yang telah diinisiasi
+======================================================
+| secara default, nilai dari array adalah sebagai
+| berikut:
+------------------------------------------------------
+| indeks ke 0 akan diisi dengan nomor urut loket
+| indeks ke 1 akan diisi dengan nol => nilai awal dari
+| kepuasan : "puas"         --> (1)
+| indeks ke 2 akan diisi dengan nol => nilai awal dari
+| kepuasan : "tidak puas"   --> (2)
+*/
 for($a = 1; $a <= $jmlLoket; $a++){
-    $jalur[$a][0] = $a;
-    $jalur[$a][1] = 0;
-    $jalur[$a][2] = 0;
+    $jalur[$a][0] = $a;   //--> nomor urut loket
+    $jalur[$a][1] = 0;    //--> (1)
+    $jalur[$a][2] = 0;    //--> (2)
 }
 
+/* penjelasan [5]
+======================================================
+| MENCARI DAN MENGELOMPOKKAN DATA BERDASARKAN LOKET
+======================================================
+*/
+//melakukan perulangan sebanyak jumlah baris
+//pada data tabel feedback terpilih
 for($a = 0; $a < count($chartArray); $a++){
+    
+    //mencocokkan nomor loket yang muncul dengan nomor
+    //loket di array $jalur penjelasan --> [3]
     for($b = 1; $b <= $jmlLoket; $b++){
+        
+        //jika nomor loket yang muncul sesuai dengan nomor loket
+        //pada data array $jalur
+        //*nomor loket ditemukan dengan mengambil nilai dari nama
+        //nilai array yaitu "loket"
         if($chartArray[$a]['loket'] === strval($jalur[$b][0])){
             if($chartArray[$a]['kepuasan'] === "puas")
                 $jalur[$b][1] += 1;
@@ -47,9 +92,20 @@ for($a = 0; $a < count($chartArray); $a++){
     }
 }
 
-$htmlNamaLoket = array();
-$htmlLoketPuas = array();
-$htmlLoketTdkPuas = array();
+/* penjelasan [6]
+======================================================
+| INISIASI ARRAY UNTUK MEMBUAT CETAKAN HTML DARI LOKET
+| BESERTA KEPUASANNYA YANG SALING TERPISAH
+======================================================
+*/
+//array untuk menampung loket misalkan [1,2,3,dst...]
+$htmlNamaLoket      = array();
+//array untuk menampung urutan kepuasan : "puas" berdasarkan urutan loket
+// misalkan [a,b,c,dst...] --> loket 1 jumlah kepuasannya yaitu a
+$htmlLoketPuas      = array();
+//array untuk menampung urutan kepuasan : "tidak puas" berdasarkan urutan loket
+// misalkan [a,b,c,dst...] --> loket 1 jumlah kepuasannya yaitu a
+$htmlLoketTdkPuas   = array();
 
 for($i = 0; $i < $jmlLoket; $i++){
     $htmlNamaLoket[$i]      = "Loket ".($i+1);
@@ -57,10 +113,17 @@ for($i = 0; $i < $jmlLoket; $i++){
     $htmlLoketTdkPuas[$i]   = $jalur[($i+1)][2];
 }
 
+/*
+======================================================
+| CHART COLOR TEMPLATING
+======================================================
+*/
+$warnaPuas      = "#0B5FA5";
+$warnaTdkPuas   = "#72899A";
 ?>
 <script src="resources/js/Chart.bundle.min.js"></script>
 <script src="resources/js/Chart.min.js"></script>
-<div id="container" style="width: 70%; margin:0 auto;">
+<div id="container" style="width: 60%; margin:0 auto;">
     <canvas id="canvas"></canvas>
 </div>
 <div class="container-fluid">
@@ -78,11 +141,11 @@ window.onload = function() {
         labels: <?php echo json_encode($htmlNamaLoket) ?>,
         datasets: [{
             label: 'Puas',
-            backgroundColor: "#949FB1",
+            backgroundColor: "<?php echo $warnaPuas?>",
             data: <?php echo json_encode($htmlLoketPuas) ?>
         }, {
             label: 'Tidak Puas',
-            backgroundColor: "#4D5360",
+            backgroundColor: "<?php echo $warnaTdkPuas?>",
             data: <?php echo json_encode($htmlLoketTdkPuas) ?>
         }]
     };
@@ -95,7 +158,7 @@ window.onload = function() {
             // In this case, we are setting the border of each bar to be 2px wide and green
             elements: {
                 rectangle: {
-                    borderWidth: 2,
+                    borderWidth: 1,
                     borderColor: '#F6F6F6',
                     borderSkipped: 'bottom'
                 }
@@ -107,6 +170,13 @@ window.onload = function() {
             title: {
                 display: true,
                 text: 'Grafik kepuasan pelayanan hari ini'
+            },
+            scales: {
+                yAxes:[{
+                    ticks:{
+                        beginAtZero:true
+                    }
+                }]
             }
         }
     });
@@ -122,8 +192,8 @@ window.onload = function() {
                     <?php echo $jalur[$a][2]?>
                 ],
                 backgroundColor: [
-                    "#949FB1",
-                    "#4D5360"
+                    "<?php echo $warnaPuas?>",
+                    "<?php echo $warnaTdkPuas?>"
                 ],
                 label: 'Data 1'
             }],
@@ -149,6 +219,6 @@ window.onload = function() {
     };
     var pie<?php echo $a?> = document.getElementById("chart-area<?php echo $a?>").getContext("2d");
     window.myDoughnut = new Chart(pie<?php echo $a?>, configPie<?php echo $a?>);
-        <?php }?>
+    <?php }?>
 };
 </script>

@@ -30,52 +30,55 @@ if(isset($_GET['page'])){
 | #PAGING HALAMAN#
 ==============================================================================
 | membuat paging untuk tabel dengan syarat jumlah halaman lebih dari 6
-N = 20
-jika n = 1
-print   n, n+1, n+2, dan N
-jika n = 2
-print  nn,   n, n+1, dan N
-jika n = 3
-print  nn, n-1,   n,  n+1, dan N
-jika n = 18
-print  nn, n-1,   n,  n+1, dan N
-jika n = 19
-print  nn, n-1,   n,     N
-jika n = 20
-print  nn, n+2, n-1, dan n
+>> N = 20
+>> jika n = 1
+>> print   n, n+1, n+2, dan N
+>> jika n = 2
+>> print  nn,   n, n+1, dan N
+>> jika n = 3
+>> print  nn, n-1,   n,  n+1, dan N
+>> jika n = 18
+>> print  nn, n-1,   n,  n+1, dan N
+>> jika n = 19
+>> print  nn, n-1,   n,     N
+>> jika n = 20
+>> print  nn, n+2, n-1, dan n
+| Keterangan : - nn  = 1,
+|              - n+1 = nilai posisi page saat ini + 1,
+|              - N   = nilai terakhir halaman
 */
 $HtmlPaging = "";
 if($halaman >= 6){
     for($a = 1; $a <= $halaman; $a++){
         if($a == $pagingpost && $a == 1)
-            $HtmlPaging =   "1<li class='active'><a href='?feedback&page=".$a."'>".$a."</a></li>
+            $HtmlPaging =   "<li class='active'><a href='?feedback&page=".$a."'>".$a."</a></li>
                             <li><a href='?feedback&page=".($a+1)."'>".($a+1)."</a></li>
                             <li><a href='?feedback&page=".($a+2)."'>".($a+2)."</a></li>
                             <li><a href='?feedback&page=".$halaman."'>&gt;</a></li>";
         if($a == $pagingpost && $a == 2)
-            $HtmlPaging =   "2<li><a href='?feedback&page=1'>1</a></li>
+            $HtmlPaging =   "<li><a href='?feedback&page=1'>1</a></li>
                             <li class='active'><a href='?feedback&page=".($a)."'>".($a)."</a></li>
                             <li><a href='?feedback&page=".($a+1)."'>".($a+1)."</a></li>
                             <li><a href='?feedback&page=".$halaman."'>&gt;</a></li>";
         if($a == $pagingpost && $a >= 3)
-            $HtmlPaging =   "3<li><a href='?feedback&page=1'>&lt;</a></li>
+            $HtmlPaging =   "<li><a href='?feedback&page=1'>&lt;</a></li>
                             <li><a href='?feedback&page=".($a-1)."'>".($a-1)."</a></li>
                             <li class='active'><a href='?feedback&page=".($a)."'>".($a)."</a></li>
                             <li><a href='?feedback&page=".($a+1)."'>".($a+1)."</a></li>
                             <li><a href='?feedback&page=".$halaman."'>&gt;</a></li>";
         if($a == $pagingpost && $a + 2 == $halaman)
-            $HtmlPaging =   "4<li><a href='?feedback&page=1'>&lt;</a></li>
+            $HtmlPaging =   "<li><a href='?feedback&page=1'>&lt;</a></li>
                             <li><a href='?feedback&page=".($a-1)."'>".($a-1)."</a></li>
                             <li class='active'><a href='?feedback&page=".($a)."'>".($a)."</a></li>
                             <li><a href='?feedback&page=".($a+1)."'>".($a+1)."</a></li>
                             <li><a href='?feedback&page=".$halaman."'>&gt;</a></li>";
         if($a == $pagingpost && $a + 1 == $halaman)
-            $HtmlPaging =   "5<li><a href='?feedback&page=1'>&lt;</a></li>
+            $HtmlPaging =   "<li><a href='?feedback&page=1'>&lt;</a></li>
                             <li><a href='?feedback&page=".($a-1)."'>".($a-1)."</a></li>
                             <li class='active'><a href='?feedback&page=".($a)."'>".($a)."</a></li>
                             <li><a href='?feedback&page=".$halaman."'>".$halaman."</a></li>";
         if($a == $pagingpost && $a == $halaman)
-            $HtmlPaging =   "6<li><a href='?feedback&page=1'>&lt;</a></li>
+            $HtmlPaging =   "<li><a href='?feedback&page=1'>&lt;</a></li>
                             <li><a href='?feedback&page=".($a-2)."'>".($a-2)."</a></li>
                             <li><a href='?feedback&page=".($a-1)."'>".($a-1)."</a></li>
                             <li class='active'><a href='?feedback&page=".$halaman."'>".$halaman."</a></li>";

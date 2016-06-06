@@ -11,7 +11,7 @@ if($typePengguna === "user"){
     $sandi = $_POST["sandi"];
     $kueri = mysql_query("SELECT * FROM bpjs_user WHERE Nama = '$nama'");
     $cek = mysql_fetch_assoc($kueri);
-    if($cek["KataSandi"] === $sandi){
+    if($cek["KataSandi"] === md5($sandi)){
         $_SESSION["nama"]   = $cek["Nama"];
         $_SESSION["posisi"] = $cek["posisi"];
         header("location:../index.php");

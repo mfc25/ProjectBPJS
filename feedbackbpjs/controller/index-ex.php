@@ -1,5 +1,6 @@
 <?php
 include "koneksi.php";
+session_start();
 if(isset($_POST['perintah'])){
     $perintah = $_POST['perintah'];
     if($perintah === "hapusfeedback"){
@@ -12,27 +13,18 @@ if(isset($_POST['perintah'])){
     }
 }else if(isset($_POST['GantiAdmin'])){
     $admin      = $_POST['GantiAdmin'];
-    $oldNama    = $admin[0];
-    $oldSandi   = $admin[1];
-    $nama       = $admin[2];
-    $sandi      = $admin[3];
+    $nama       = $admin[0];
+    $pwdbaru    = $admin[1];
+    $u_pwdbaru  = $admin[2];
     
-    $kueriGantiadmin = null;
-    
-    if($oldNama !== $nama){
-        $kueriGantiadmin .=",Nama='".$nama."'";
-    }
-    if($oldSandi !== $sandi){
-        $kueriGantiadmin .= ",KataSandi='".$sandi."'";
-    }
-    if($kueriGantiadmin !== null){
-        $kueriGantiadmin = substr($kueriGantiadmin, 1, strlen($kueriGantiadmin));
-        $Gantiadmin = mysql_query("UPDATE `bpjs_user` SET `Nama`='$nama',`KataSandi`='$sandi' WHERE `Nama`='$oldNama'");
-        if($Gantiadmin){
-            echo include "tayangkan-tabel-user.php";
-            $_SESSION['nama'] = $nama;
-        }else
-            echo "gagal";
+    if($pwdbaru === $u_pwdbaru){
+        $enpwd      = md5($pwdbaru);
+        $sesinama   = $_SESSION['nama'];
+        $Gantiadmin = mysql_query("UPDATE `bpjs_user` SET `Nama`='$nama',`KataSandi`='$enpwd' WHERE `Nama`='$sesinama'");
+        $_SESSION['nama'] = $nama;
+        echo "sukses";
+    }else{
+        echo "password tidak sama";
     }
 }
 ?>

@@ -92,6 +92,15 @@ $("#tidakpuas .row label").click(function(){
     $("#tidakpuas .row i").removeClass("fa-check-square-o");
     $(this).children().addClass("fa-check-square-o");
 });
+
+/*
+========================================================
+| menampilkan popup/modal data berhasil tersimpan
+========================================================
+| popup ini muncul ketika user telah selesai mengisi
+| kuisioner dan menekan tombol sekesai. Berlaku untuk
+| tombol "Selesai" bagian pertama dan kedua/terakhir
+*/
 function formulirsukses(){
     bootbox.dialog({
         message: "Data berhasil disimpan",
@@ -107,6 +116,16 @@ function formulirsukses(){
         }
     });
 }
+
+/*
+========================================================
+| menampilkan popup/modal data gagal tersimpan
+========================================================
+| popup ini muncul ketika user selesai mengisi kuisioner
+| dan menekan tombol selesai, namun terjadi kesalahan
+| ketika query mencoba mengeksekusi perintah memasukkan
+| data kedalam database.
+*/
 function formulirgagal(){
     bootbox.dialog({
         message: "Data gagal disimpan, beritahu Administrator",
@@ -123,6 +142,16 @@ function formulirgagal(){
     });
 }
 
+/*
+========================================================
+| menampilkan popup/modal data tidak lengkap
+========================================================
+| popup ini muncul jika user memilih kuisioner kepuasan
+| yaitu "tidak puas" dan memilih opsi "lain-lain".
+| Pada opsi "lain-lain", user diminta memberikan
+| jawaban diluar opsi yang telah diberikan dengan batas
+| pengisian hingga 250 karakter
+*/
 function formulirtidaklengkap(){
     bootbox.dialog({
         message: "tuliskan alasan Anda",
@@ -135,6 +164,14 @@ function formulirtidaklengkap(){
         }
     });
 }
+
+/*
+========================================================
+| menghapus tombol dan disable pilihan puas/tidak puas
+========================================================
+| perintah ini dijalankan ketika user telah mengklik
+| tombol "Pilih" pada opsi "Tidak Puas".
+*/
 $("#loket button").eq(1).click(function(){
     $("#loket button").remove();
     $("#loket input[type='radio']").attr("disabled",true)
@@ -264,6 +301,17 @@ $(".TFhapus").click(function(){
         }
     });
 });
+
+/*
+========================================================
+| menampilkan popup/modal konfirmasi penghapusan data
+========================================================
+| popup/modal ini muncul ketika Administrator menekan
+| tombol hapus pada kolom "pilihan" di tabel data
+| Feedback, Administrator sistem bisa memilih untuk
+| melanjutkan penghapusan data atau membatalkan perintah
+| dengan mengakses tombol/petunjuk yang tersedia
+*/
 function konfirmasihapus(){
     jQuery.ajax({
         url     : "controller/index-ex.php",
@@ -280,42 +328,64 @@ function konfirmasihapus(){
     })
 }
 
-var oldNama, oldSandi, nama, sandi;
+/*
+========================================================
+| PENGATURAN INFORMASI ADMINISTRATOR
+========================================================
+| enkripsi kata sandi dengan md5
+*/
+
 $(".TUganti").click(function(){
-    var iHtml = $(".TUganti span").html();
-    if(iHtml == "Ganti"){
-        oldNama     = $(".TUnama").html();
-        oldSandi    = $(".TUsandi").children().val();
-        $(".TUnama").html("<input type='text' value='" + oldNama + "' maxlength='20'/>");
-        $(".TUsandi").children().attr("disabled",false);
-        $(".TUganti span").html("Selesai");
-    }else if(iHtml == "Selesai"){
-        nama    = $(".TUnama").children().val();
-        sandi   = $(".TUsandi").children().val();
-        
-        var data = [oldNama, oldSandi, nama, sandi];
-        jQuery.ajax({
-            url     : "controller/index-ex.php",
-            data    : {'GantiAdmin':data},
-            type    : "post",
-            success : function(s){
-                if(s == "gagal"){
-                    alert(s);
-                }else{
-                    $(".tabel-user").html(s);
-                        location.reload(true);
+    dataGanti       = [];
+    dataGanti[0]    = $(".form-admin input[name='nama']").eq(0).val();
+    dataGanti[1]    = $(".form-admin input[name='pwdbaru']").eq(0).val();
+    dataGanti[2]    = $(".form-admin input[name='u_pwdbaru']").eq(0).val();
+    jQuery.ajax({
+        url     : "controller/index-ex.php",
+        data    : {GantiAdmin : dataGanti},
+        type    : "post",
+        success : function(s){
+        if(s == "sukses"){
+            berhasilGantiAdmin();
+        }else if(s == "gagal"){
+            gagalGantiAdmin();
+        }
+    }
+    });
+});
+
+function berhasilGantiAdmin(){
+    bootbox.dialog({
+        message: "Berhasil mengganti data Administrator",
+        title: "Informasi",
+        buttons: {
+            main: {
+                label: "OK",
+                className: "btn-default",
+                callback : function(){
+                    location.reload(true);
                 }
             }
-        });
-        $(".TUganti span").html("Ganti");
-    }
-});
+        }
+    });
+}
+function gagalGantiAdmin(){
+    bootbox.dialog({
+        message: "Gagal mengganti data Administrator",
+        title: "Informasi",
+        buttons: {
+            main: {
+                label: "OK",
+                className: "btn-danger"
+            }
+        }
+    });
+}
 
 /*
 ==================================================
 | pengaturan paging halaman
 ==================================================
-|
 */
 $(".kirim-pengaturan-halaman").click(function(){
     var posisihalaman   = $("input[name='posisihalaman']").val();
@@ -334,7 +404,7 @@ $(".kirim-pengaturan-halaman").click(function(){
 | jQuery numeric input only
 ==================================================
 | fungsi ini digunakan untuk memblokir input
-| selain angka/numerik
+| selain angka/numerik dan tombol hapus(keyboard)
 */
 $(".posisihalaman").keypress(function(e){
     if(e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57))

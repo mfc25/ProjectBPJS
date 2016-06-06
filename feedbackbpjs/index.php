@@ -28,7 +28,7 @@ include "controller/index-session.php";
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
-                            <?php echo $nama?>
+                            <span id="namaAdmin"><?php echo $_SESSION['nama']?></span>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
