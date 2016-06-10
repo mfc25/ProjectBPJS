@@ -1,0 +1,147 @@
+@font-face{
+    font-family: 'ubuntu-r';
+    src: url("../font/Ubuntu-R.ttf") format("truetype");
+    
+}
+body{
+    background: white;
+    font-family: 'ubuntu-r';
+}
+input[type="radio"]{
+    display: none;
+}
+label, textarea{
+    display: block;
+}
+#tidakpuas .row{
+    margin: 0 10px;
+}
+#tidakpuas label{
+    display: inline-block;
+    height: 50px;
+    cursor: pointer;
+}
+#pilihanloket label{
+    font-size: 3em;
+    background: #ecf0f1;
+    color: #BDC3C7;
+    text-align: center;
+    line-height: 3em;
+}
+#pilihanloket input[type="radio"]:checked + label{
+    background: #27ae60;
+    color: white;
+}
+input[type="radio"]:checked + label{
+    background:#2980b9;
+    color: white;
+}
+.row > .col-md-3{
+    border: 1px solid #DDDDDD;
+}
+.row .pagination{
+    margin: 0;
+}
+#loket label{
+    font-size: 6em;
+    text-align: center;
+    line-height: 180px;
+    width: 100%;
+    background: #ecf0f1;
+}
+#loket input{
+    width: 100%;
+}
+#loket .fa-smile-o{
+    color: #2980b9;
+}
+#loket .fa-frown-o{
+    color: #e74c3c;
+}
+#loket input[id="puas"]:checked + label{
+    background: #2980b9;
+    color: white;
+}
+#loket input[id="tdkpuas"]:checked + label{
+    background: #e74c3c;
+    color: white;
+}
+#loket,#tidakpuas{
+    display: none;
+}
+.box{
+    display: block;
+    width: 600px;
+    margin: 2% auto 0;
+    height: auto;
+}
+.pilih{
+    background: #F8F8F8;
+    -webkit-box-shadow:0 1px 2px black;
+    -moz-box-shadow:0 1px 2px black;
+    box-shadow:0 1px 2px black;
+}
+.pilih button{
+    float: right;
+}
+.btn{
+    margin: 10px;
+}
+#loket .btn-primary{
+    display: none;
+}
+textarea[name="tp"]{
+    display: none;
+    margin: 10px auto;
+    width: 90%;
+}
+.alert{
+    margin-top: 10px;
+}
+.modal-footer .btn + .btn{
+    margin-bottom: 11px;
+}
+.bootbox-body .table > tbody > tr > td{
+    border: 0;
+}
+.tabel-feedback td,
+.tabel-konfirmasi-hapus td{
+    max-width: 200px;
+    word-wrap: break-word;
+}
+.tabel-feedback .btn{
+    margin: 0px;
+}
+.tabel-feedback .fa-sort{
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+}
+#status-data{
+    display: inline-block;
+    top: 100%;
+}
+.menu-aktif{
+    background: rgba(255,255,255,0.2);
+}
+.pengaturan-halaman{
+    width: auto;
+    float: right;
+}
+.pengaturan-halaman input{
+    width: 50px;
+}
+.chart{
+    display: inline-block;
+    background: green;
+    outline: 1px solid;
+}
+.panel-administrator{
+    max-width: 600px;
+}
+#credit{
+    position: fixed;
+    bottom: 5px;
+    font-size: 12px;
+    color: #999999;;
+}
