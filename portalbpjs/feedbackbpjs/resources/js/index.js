@@ -450,6 +450,3 @@ $(".jml-loket button").click(function(){
         }
     });
 });
-setInterval(function(){
-    location.reload(true);
-}300000);
