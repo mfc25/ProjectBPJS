@@ -15,7 +15,6 @@ while($br < $jmlbaris){
     $br += $pagingbts;
     $halaman++;
 }
-
 if(isset($_GET['page'])){
     $pagingpost = $_GET['page'];
     $_SESSION['bpjs-sj25-paging-location'] = $_GET['page'];
