@@ -1,0 +1,104 @@
+@font-face{
+    font-family : 'ubuntu-r';
+    src         : url("../../../resources/public/font/Ubuntu-R.ttf") format("truetype");
+}
+body{
+    font-family: 'ubuntu-r';
+}
+/*pengaturan css pembungkus formulir luar*/
+.box{
+    display: block;
+    width: 600px;
+    margin: 60px auto 0;
+    height: auto;
+}
+/*global setting css*/
+input[type="radio"]
+{
+    display: none;
+}
+.panel button
+{
+    float: right;
+    margin: 10px;
+}
+input[type="radio"]:checked + label
+{
+    background:#2980b9;
+    color: white;
+}
+label
+{
+    display: block;
+}
+/*pengaturan css di bagian tertentu pada setiap tahap pengisian formulir*/
+#pilihan-loket label
+{
+    font-size: 3em;
+    background: #ecf0f1;
+    color: #BDC3C7;
+    text-align: center;
+    line-height: 3em;
+}
+#pilihan-loket input[type="radio"]:checked + label
+{
+    background: #27ae60;
+    color: white;
+}
+
+#kepuasan-loket,
+#tidak-puas
+{
+    display: none;
+}
+#kepuasan-loket .fa{
+    font-size: 6em;
+    text-align: center;
+    line-height: 180px;
+    width: 100%;
+    background: #ecf0f1;
+}
+#kepuasan-loket input
+{
+    width: 100%;
+}
+#kepuasan-loket .fa-smile-o
+{
+    color: #2980b9;
+}
+#kepuasan-loket .fa-frown-o
+{
+    color: #e74c3c;
+}
+#kepuasan-loket input[id="puas"]:checked + label
+{
+    background: #2980b9;
+    color: white;
+}
+#kepuasan-loket input[id="tdkpuas"]:checked + label
+{
+    background: #e74c3c;
+    color: white;
+}
+#tidak-puas textarea
+{
+    display: none;
+    width: 100%;
+    max-width: 100%;
+}
+#tidak-puas .alert
+{
+    margin: 0 10px;
+    padding: 10px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+#tidak-puas label
+{
+    display: inline-block;
+    outline: 1px solid #e7e7e7;
+    height: 50px;
+    cursor: pointer;
+}

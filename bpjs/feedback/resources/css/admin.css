@@ -1,0 +1,64 @@
+@font-face{
+    font-family : 'ubuntu-r';
+    src         : url("../../../resources/public/font/Ubuntu-R.ttf") format("truetype");
+}
+body{
+    font-family: 'ubuntu-r';
+}
+.menu-aktif {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+/*css untuk bagian administrator - tabel feedback*/
+.tabel-feedback td,
+.tabel-konfirmasi-hapus td{
+    max-width: 200px;
+    word-wrap: break-word;
+}
+.tabel-feedback .btn{
+    margin: 0px;
+}
+.tabel-feedback .fa-sort{
+    cursor: pointer;
+    font-size: 16px;
+    float: right;
+}
+.tabel-feedback tr:nth-child(n+1) td:first-child{
+    text-align: right;
+}
+.tabel-feedback tr:nth-child(n+1) td:last-child{
+    width: 80px;
+}
+#jumlahloket .input-sm{
+    display: inline-block;
+    width: 30px;
+    height: 25px;
+}
+.pagination{
+    margin: 0;
+}
+
+.pengaturan-paging{
+    display: inline-block;
+    float: right;
+}
+.pengaturan-paging .form-control{
+    width: 50px;
+    height: 30px;
+    display: inline-block;
+}
+.pengaturan-paging btn{
+    margin: 0;
+}
+/*css untuk bagian bootbox/popup feedback*/
+.bootbox-body .table > tbody > tr > td{
+    border: 0;
+}
+/*css untuk bagian administrator - pengaturan informasi administrator*/
+.panel-administrator{
+    max-width: 600px;
+}
+.ganti-administrator{
+    margin: 10px;
+}

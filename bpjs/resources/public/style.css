@@ -1,0 +1,8 @@
+.navbar-brand > img{
+    height: 100%;
+    width: auto;
+    display: inline-block;
+}
+#wrapper{
+    margin-top: 55px;
+}
