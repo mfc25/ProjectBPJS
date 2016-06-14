@@ -110,12 +110,12 @@ for($i = 0; $i < $jmlLoket; $i++){
 $warnaPuas      = "#0B5FA5";
 $warnaTdkPuas   = "#72899A";
 ?>
-<div id="container" style="width: <?php if($jmlLoket == 4){?>70%<?php } else if($jmlLoket > 4){?>40%<?php } ?>; margin:0 auto;">
+<div id="container" style="width:<?php if($jmlLoket == 4){?>70%<?php } else if($jmlLoket > 4){?>40%<?php } ?>; margin:0 auto;">
     <canvas id="canvas"></canvas>
 </div>
 <div class="container-fluid">
     <?php for($a = 1; $a <= $jmlLoket; $a++){?>
-        <div class="canvas-holder col-md-<?php if($jmlLoket == 4){?>3<?php } else if($jmlLoket > 4){?>4<?php } ?>">
+        <div class="canvas-holder col-md-3">
             <canvas id="chart-area<?php echo $a?>" />
         </div>
     <?php }?>

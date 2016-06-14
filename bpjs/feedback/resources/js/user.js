@@ -166,7 +166,7 @@ function formulirtidaklengkap(){
     bootbox.dialog({
         closeButton : false,
         message     : "Data belum lengkap, lanjutkan mengisi formulir",
-        title       : "Sukses",
+        title       : "Peringatan",
         buttons: {
             main: {
                 label: "Okay",

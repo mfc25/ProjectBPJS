@@ -71,7 +71,7 @@ function data_tidak_tepat(){
     bootbox.dialog({
         closeButton : false,
         message     : "Data yang Anda masukkan tidak benar",
-        title       : "Informasi",
+        title       : "Peringatan",
         buttons: {
             success: {
                 label: "Okay",
@@ -85,8 +85,8 @@ function data_tidak_tepat(){
 function kesalahan_sistem(){
     bootbox.dialog({
         closeButton : false,
-        message     : "Gagal melaksanakan perintah(Query-SQL), beritahu Administrator",
-        title       : "Informasi",
+        message     : "Gagal melaksanakan perintah(Query-SQL)",
+        title       : "Terjadi Kesalahan",
         buttons: {
             success: {
                 label: "Okay",

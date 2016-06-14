@@ -12,6 +12,7 @@
     <link href="../../../resources/public/css/simple-sidebar.css" rel="stylesheet"/>
     <link href="../../../resources/public/gambar/logo-bpjs.png"  rel="icon"/>
     <link href="../../resources/css/user.css" rel="stylesheet"/>
+    <title>Feedback BPJS Kesehatan</title>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">

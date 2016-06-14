@@ -16,19 +16,26 @@ if(isset($_POST['user']))
         $sandi  = $dataAdminBpjs[1];
         
         $CekDataAdmin = mysql_query("SELECT * FROM bpjs_user");
-        $data = mysql_fetch_assoc($CekDataAdmin);
-        if(
-            $nama === $data['Nama'] &&
-            md5($sandi) === $data['KataSandi']
-          )
+        if($CekDataAdmin)
         {
-            $_SESSION['bpjs_pengguna']  = "admin-PortalBpjs";
-            $_SESSION['bpjs_admin']     = $nama;
-            echo "berhasil";
+            $data = mysql_fetch_assoc($CekDataAdmin);
+            if(
+                $nama === $data['Nama'] &&
+                md5($sandi) === $data['KataSandi']
+              )
+            {
+                $_SESSION['bpjs_pengguna']  = "admin-PortalBpjs";
+                $_SESSION['bpjs_admin']     = $nama;
+                echo "berhasil";
+            }
+            else
+            {
+                echo "data_tidak_benar";
+            }
         }
         else
         {
-            echo "data_tidak_benar";
+            echo "gagal";
         }
     }
     else

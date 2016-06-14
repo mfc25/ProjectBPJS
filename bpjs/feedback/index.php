@@ -16,6 +16,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <link href="resources/css/index.css" rel="stylesheet"/>
+        <title>Feedback BPJS Kesehatan</title>
     </head>
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">

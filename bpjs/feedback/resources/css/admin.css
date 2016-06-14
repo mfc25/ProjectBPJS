@@ -30,6 +30,9 @@ body{
 .tabel-feedback tr:nth-child(n+1) td:last-child{
     width: 80px;
 }
+.tabel-feedback tr:nth-child(n+1) td:nth-child(4){
+    text-align: center;
+}
 #jumlahloket .input-sm{
     display: inline-block;
     width: 30px;
