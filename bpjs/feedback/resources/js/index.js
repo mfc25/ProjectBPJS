@@ -42,13 +42,8 @@ var id = [];
 //LOGIN SEBAGAI ADMINISTRATOR
 
 //event ketika admin menekan tombol enter keyboard
-//ketika pointer berada di input field nama
-$(".admin-form input[name='nama']").keypress(function(k){
-    if(k.which == 13)
-        loginAdmin();
-});
-//ketika pointer berada di input field sandi
-$(".admin-form input[name='sandi']").keypress(function(k){
+//ketika pointer berada di input field nama atau sandi
+$(".admin-form input[name='nama'], .admin-form input[name='sandi']").keypress(function(k){
     if(k.which == 13)
         loginAdmin();
 });
