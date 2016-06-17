@@ -6,7 +6,6 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <!-- Bootstrap -->
         <link href="resources/public/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="resources/public/fontawesome/css/font-awesome.min.css" rel="stylesheet"/>
         <link rel="icon" href="resources/public/gambar/logo-bpjs.png"/>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,9 +25,8 @@
                         Portal BPJS Kesehatan
                     </span>
                     <ul class="nav navbar-nav">
-                        <li class="active"><a>Home</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="company-profile.php">Company profile <span class="caret"></span></a>
+                        <li><a href="index.php">home</a></li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="company-profile.php">Company profile <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a>Visi & misi</a></li>
                                 <li><a>Sejarah</a></li>
@@ -36,7 +34,7 @@
                             </ul>
                         </li>
                         <li><a href="dokumentasi-kegiatan.php">Kegiatan</a></li>
-                        <li><a href="kontak-kami.php">Kontak Kami</a></li>
+                        <li class="active"><a>Kontak Kami</a></li>
                         <li><a href="feedback/index.php">Kuisioner</a></li>
                     </ul>
                 </div>

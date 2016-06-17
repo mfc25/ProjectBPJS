@@ -5,10 +5,12 @@ include "../../controller/koneksi.php";
 
 if(isset($_POST['Feedback']))
 {
-    $hitungloket = mysql_fetch_assoc(mysql_query("SELECT Jumlah FROM jmlloket"));
-    $hitungloket = $hitungloket['Jumlah'];
-    $data       = $_POST['Feedback'];
-    $loket      = $data[0];
+    //kueri untuk mengambil data jumlah loket pada kolom Jumlah pada tabel jmlloket
+    $hitungloket    = mysql_fetch_assoc(mysql_query("SELECT Jumlah FROM jmlloket"));
+    //mengambil value dari kolom Jumlah
+    $hitungloket    = $hitungloket['Jumlah'];
+    $data           = $_POST['Feedback'];
+    $loket          = $data[0];
     
     //jika jumlah loket antara 4 sampai dengan 6
     //sesuai dengan jumlah yang telah ditentukan di tabel jumlahloket

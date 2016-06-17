@@ -26,12 +26,25 @@
                         <img alt="Brand" src="../resources/public/gambar/logo-bpjs.png"/>
                         Feedback BPJS Kesehatan
                     </span>
+                    <ul class="nav navbar-nav">
+                        <li><a href="../index.php">home</a></li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="../company-profile.php">company profile<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a>Visi & misi</a></li>
+                                <li><a>Sejarah</a></li>
+                                <li><a>Struktur Organisasi</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="../dokumentasi-kegiatan.php">Kegiatan</a></li>
+                        <li><a href="../kontak-kami.php">kontak Kami</a></li>
+                        <li class="active"><a>kuisioner</a></li>
+                    </ul>
                 </div>
             </div>
         </nav>
         <div class="login-page">
             <div class="panel panel-primary">
-                <div class="panel-heading"><center>Kuisioner kepuasan pelayanan</center></div>
+                <div class="panel-heading"><center>Kuisioner Kepuasan Pelayanan</center></div>
                 <div class="panel-body">
                     <div class="user-form form-group">
                         <input type="hidden" name="pengguna" value="user"/>
